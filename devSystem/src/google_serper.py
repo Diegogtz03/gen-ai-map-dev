@@ -23,7 +23,7 @@ def get_relevant_links(tool_name: str) -> list[str]:
     """Executes a Google search to get relevant urls for the tool."""
     try:
         print("SEARCHING...")
-        search = GoogleSerperAPIWrapper(serper_api_key="2cb0f320c07ad299b0872eb8e96b4c132a05bbef", k=NUM_GEN_LINKS)
+        search = GoogleSerperAPIWrapper(k=NUM_GEN_LINKS)
         links = get_organic_links(search, tool_name)
 
         # search = GoogleSerperAPIWrapper(k=NUM_NEWS_LINKS, type="news")
