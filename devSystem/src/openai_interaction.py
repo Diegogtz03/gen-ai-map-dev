@@ -1,8 +1,8 @@
 import asyncio
 import time
 import openai
-from config import OPENAI_MODEL_NAME, MAX_TOKENS, TEMPERATURE, INDEX_K, MAIN_COLUMN
-import src.prompt_repo as prompt_repo
+from config.config import OPENAI_MODEL_NAME, MAX_TOKENS, TEMPERATURE, INDEX_K, MAIN_COLUMN
+import prompt_repo as prompt_repo
 import os
 
 

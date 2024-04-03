@@ -1,15 +1,14 @@
 import asyncio
 import json
 import time
-from .web_scraper import scrape_links_to_documents
-from .document_processor import resize_documents, create_vectorstore
-from .openai_interaction import run_chain_on
-from .google_sheets import write_to_sheet
-from .google_serper import get_relevant_links
-from langchain_openai import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
+from web_scraper import scrape_links_to_documents
+from document_processor import resize_documents #create_vectorstore
+# from .openai_interaction import run_chain_on
+from google_serper import get_relevant_links
+# from langchain_openai import OpenAIEmbeddings
+# from langchain.vectorstores import FAISS
 import logging
-from config import CHUNK_SIZE, CHUNK_OVERLAP
+from config.config import CHUNK_SIZE, CHUNK_OVERLAP
 
 logger = logging.getLogger(__name__)
 
@@ -28,14 +27,12 @@ async def main_process(event):
         documents = resize_documents(raw_documents, CHUNK_SIZE, CHUNK_OVERLAP)
         print(f"Split documents: {len(documents)}")
 
-        embeddings = OpenAIEmbeddings(disallowed_special=())
-        vectorstore = await create_vectorstore(FAISS, embeddings, documents)
-        print("Vector store created")
+        # embeddings = OpenAIEmbeddings(disallowed_special=())
+        # vectorstore = await create_vectorstore(FAISS, embeddings, documents)
+        # print("Vector store created")
 
-        response = await run_chain_on(message, vectorstore)
-        print(f"Response: {response}")
-
-        write_to_sheet(message, response)
+        # response = await run_chain_on(message, vectorstore)
+        # print(f"Response: {response}")
 
     except Exception as e:
         print(f"Error in main_process: {e}")

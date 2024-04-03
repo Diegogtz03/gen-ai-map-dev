@@ -4,11 +4,11 @@ from bs4 import BeautifulSoup
 from langchain.docstore.document import Document
 from typing import List, Any
 import asyncio
-from config import SCRAPE_TIMEOUT
+from config.config import SCRAPE_TIMEOUT
 
 async def fetch(url, session):
     try:
-        async with session.get(url, timeout=aiohttp.ClientTimeout(total=SCRAPE_TIMEOUT)) as response:
+        async with session.get(url, timeout=aiohttp.ClientTimeout(total=SCRAPE_TIMEOUT), ssl=False) as response:
             html = await response.text()
             return Document(page_content=html, metadata={"source": url})
     except Exception as e:
